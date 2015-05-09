@@ -1,8 +1,10 @@
 <tr {$status|default:''}>
+   
     <td>{$exp.title}</td>
     <td><button name="show" value="{$exp.id}" class="btn btn-info btn-xs" formaction="index.php">i</button></td>
     <td>{$exp.seller_name}</td>
     <td>{$exp.price}</td>
     <td>{$exp.time}</td>
     <td><button name="delete" value="{$exp.id}" class="btn btn-danger btn-xs" formaction="index.php">X</button></td>
+    
 </tr>

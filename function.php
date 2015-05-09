@@ -28,17 +28,3 @@ function myLogger($db, $sql, $caller) {
         $firePHP->groupEnd();
     }
 }
-
-// Обработка входящего объявления
-function prepareQuery($exp, $id) {
-    $exp['id'] = $id;
-    if (isset($exp['button_add'])){
-        unset($exp['button_add']);
-    }
-    foreach ($exp as $key => &$value) {
-        $query[$key] = strip_tags($value);
-    }
-    $query['price'] = (float) $query['price'];
-    $query['time'] = Date('d.m.Y H:i:s', time());
-    return $query;
-}

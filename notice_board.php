@@ -16,16 +16,16 @@ class Notice_board {
         if (!($this instanceof Notice_board)) {
             die('Нельзя использовать этот метод в конструкторе классов');
         }
-        $arr = $exp->get();
+        $arr = $exp->getValue();
         $this->board[$arr['id']] = $exp;
     }
 
     public function getAllExpFromDB() {
         global $mysqli;
-        $all = $mysqli->select('SELECT * FROM explanations ORDER BY id');
+        $all = $mysqli->select('SELECT * FROM explanations ORDER BY id DESC');
         foreach ($all as $value) {
             if ($value['private'] == 0) {
-                $exp = new Explanation($value);
+                $exp = new PrivateExplanation($value);
                 self::addExp($exp);
             } else {
                 $exp = new CorporateExplanation($value);
@@ -35,23 +35,16 @@ class Notice_board {
         return self::$instance;
     }
 
-    public function deleteExpFromDB($id) {
-        global $mysqli;
-        unset($this->board[$id]);
-        $mysqli->select("delete from explanations where id = ?d", $id);
-        return self::$instance;
-    }
-
     public function getListOfExplanations() {
         global $smarty;
         $row = '';
         foreach ($this->board as $value) {
             if ($value instanceof CorporateExplanation) {
-                $smarty->assign('status', 'class="warning"');
+                $smarty->assign('status', 'class="success"');
             } else {
                 $smarty->assign('status', '');
             }
-            $smarty->assign('exp', $value->get());
+            $smarty->assign('exp', $value->getValue());
             $row.=$smarty->fetch('table_row.tpl.html');
         }
         $smarty->assign('exp_rows', $row);
@@ -63,7 +56,7 @@ class Notice_board {
 
         if (isset($_GET['show']) && isset($this->board[$_GET['show']])) {
             $show = $_GET['show'];
-            $name = $this->board[$show]->get();
+            $name = $this->board[$show]->getValue();
             foreach ($name as &$value) {
                 $value = htmlspecialchars($value);
             }

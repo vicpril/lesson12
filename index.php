@@ -46,14 +46,15 @@ $mysqli = ConnectDB::connectDB($filename_user, $project_root);
 
 $id = (isset($_GET['id'])) ? $_GET['id'] : '';
 
-if (isset($_GET['delete'])) {
-    Notice_board::instance()->deleteExpFromDB($_GET['delete']);
-}
-
 if (isset($_POST['button_add'])) {
-    $arr = prepareQuery($_POST, $id);
-    $exp = new Explanation(prepareQuery($_POST, $id));
+    $exp = new Explanation(Explanation::prepareQuery($_POST, $id));
     $exp->save();
 }
 
-Notice_board::instance()->getAllExpFromDB()->getListOfExplanations()->display();
+Notice_board::instance()->getAllExpFromDB();
+
+if (isset($_GET['delete'])) {
+    Notice_board::instance()->board[$_GET['delete']]->deleteExpFromDB($_GET['delete'], Notice_board::instance()->board);
+}
+
+Notice_board::instance()->getListOfExplanations()->display();
