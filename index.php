@@ -51,10 +51,10 @@ if (isset($_POST['button_add'])) {
     $exp->save();
 }
 
-Notice_board::instance()->getAllExpFromDB();
+$instance = Notice_board::instance()->getAllExpFromDB();
 
-if (isset($_GET['delete'])) {
-    Notice_board::instance()->board[$_GET['delete']]->deleteExpFromDB($_GET['delete'], Notice_board::instance()->board);
+if (isset($_GET['delete']) && isset($instance->board[$_GET['delete']])) {
+    $instance->board[$_GET['delete']]->deleteExp($instance);
 }
 
-Notice_board::instance()->getListOfExplanations()->display();
+$instance->getListOfExplanations()->display();

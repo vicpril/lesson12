@@ -41,9 +41,10 @@ class Explanation {
         return get_object_vars($this);
     }
 
-    public function deleteExpFromDB($id, &$board) {
+    public function deleteExp($instance) {
         global $mysqli;
-        unset($board[$id]);
+        $id = $this->id;
+        unset($instance->board[$id]);
         $mysqli->select("delete from explanations where id = ?d", $id);
     }
 

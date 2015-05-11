@@ -40,7 +40,7 @@ class Notice_board {
         $row = '';
         foreach ($this->board as $value) {
             if ($value instanceof CorporateExplanation) {
-                $smarty->assign('status', 'class="success"');
+                $smarty->assign('status', 'class="info"');
             } else {
                 $smarty->assign('status', '');
             }
