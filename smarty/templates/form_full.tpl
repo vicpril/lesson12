@@ -1,5 +1,5 @@
 <form class="form-horizontal form-group-sm" method="post" accept-charset="utf-8">
-    {*        <h3 class="sub-header text-center">Объявление</h3>*}
+            {*<h3 class="sub-header text-center">Объявление</h3>*}
     <div class="form-group ">
         <div class="col-xs-offset-4 col-xs-8">
             <div class="radio">

@@ -1,7 +1,7 @@
 <?php
 
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 header("Content-Type: text/html; charset=utf-8");
 
 date_default_timezone_set('Asia/Novosibirsk');
@@ -47,7 +47,11 @@ $mysqli = ConnectDB::connectDB($filename_user, $project_root);
 $id = (isset($_GET['id'])) ? $_GET['id'] : '';
 
 if (isset($_POST['button_add'])) {
-    $exp = new Explanation(Explanation::prepareQuery($_POST, $id));
+    if ($_POST['private'] == 0) {
+                $exp = new PrivateExplanation(Explanation::prepareQuery($_POST, $id));
+            } else {
+                $exp = new CorporateExplanation(Explanation::prepareQuery($_POST, $id));
+            }
     $exp->save();
 }
 

@@ -1,4 +1,4 @@
-<h2 class="sub-header">Доска объявлений</h2>
+<h2 class="sub-header text-center">Доска объявлений</h2>
 <form>
     <div class="table-responsive" >
         <table class="table table-hover">

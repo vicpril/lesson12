@@ -1,8 +1,9 @@
-<?php /* Smarty version 2.6.28, created on 2015-05-09 12:14:02
+<?php /* Smarty version 2.6.28, created on 2015-05-12 12:01:46
          compiled from form_small.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'form_small.tpl', 21, false),array('function', 'html_options', 'form_small.tpl', 56, false),)), $this); ?>
-<form  class="form-horizontal form-group-sm" method="post" accept-charset="utf-8">
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'form_small.tpl', 22, false),array('function', 'html_options', 'form_small.tpl', 57, false),)), $this); ?>
+<form class="form-horizontal form-group-sm" method="post" accept-charset="utf-8">
+    
     <div class="form-group ">
         <div class="">
             <div class="radio">

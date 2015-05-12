@@ -1,4 +1,5 @@
-<form  class="form-horizontal form-group-sm" method="post" accept-charset="utf-8">
+<form class="form-horizontal form-group-sm" method="post" accept-charset="utf-8">
+    
 {*    <h4 class="sub-header text-center">Объявление</h4>*}
     <div class="form-group ">
         <div class="">

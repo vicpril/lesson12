@@ -16,8 +16,8 @@ class Notice_board {
         if (!($this instanceof Notice_board)) {
             die('Нельзя использовать этот метод в конструкторе классов');
         }
-        $arr = $exp->getValue();
-        $this->board[$arr['id']] = $exp;
+        $id = $exp->getId();
+        $this->board[$id] = $exp;
     }
 
     public function getAllExpFromDB() {
@@ -26,11 +26,10 @@ class Notice_board {
         foreach ($all as $value) {
             if ($value['private'] == 0) {
                 $exp = new PrivateExplanation($value);
-                self::addExp($exp);
             } else {
                 $exp = new CorporateExplanation($value);
-                self::addExp($exp);
             }
+            self::addExp($exp);
         }
         return self::$instance;
     }
@@ -93,4 +92,5 @@ class Notice_board {
         }
         return $categories;
     }
+
 }

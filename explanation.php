@@ -3,6 +3,7 @@
 class Explanation {
 
     private $id;
+    private $private;
     private $seller_name;
     private $email;
     private $allow_mails = ' ';
@@ -41,11 +42,17 @@ class Explanation {
         return get_object_vars($this);
     }
 
+    public function getId() {
+        return $this->id;
+    }
+
     public function deleteExp($instance) {
         global $mysqli;
         $id = $this->id;
-        unset($instance->board[$id]);
-        $mysqli->select("delete from explanations where id = ?d", $id);
+        $del = $mysqli->select("delete from explanations where id = ?d", $id);
+        if ($del > 0) {
+            unset($instance->board[$id]);
+        }
     }
 
     // Обработка входящего объявления
@@ -61,11 +68,12 @@ class Explanation {
         $query['time'] = Date('d.m.Y H:i:s', time());
         return $query;
     }
+
 }
 
 class CorporateExplanation extends Explanation {
 
-    private $private;
+//    private $private;
     private $status;
 
     public function __construct($exp) {
@@ -82,7 +90,7 @@ class CorporateExplanation extends Explanation {
 
 class PrivateExplanation extends Explanation {
 
-    private $private;
+//    private $private;
 
     public function __construct($exp) {
         parent::__construct($exp);
